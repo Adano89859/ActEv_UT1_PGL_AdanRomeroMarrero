@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -47,6 +48,16 @@ fun Contador() {
     Column( modifier = Modifier.fillMaxSize().padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
         //Introduzco los elementos de la app
 
+        //Pongo el condicional para el que si numero llega a 10, se muestra el mensaje
+        if(numero >=10) {
+            Text(
+                text = "Se llegó al número 10. Meta alcanzada"
+            )
+        }
+
+        //Añado un espacio hasta el siguiente elemento
+        Spacer(modifier = Modifier.height(20.dp))
+
         //Hago un texto que tiene el contenido del contador
         Text(
             text = "Contador: $numero"
@@ -55,21 +66,33 @@ fun Contador() {
         //Añado un espacio hasta el siguiente elemento
         Spacer(modifier = Modifier.height(20.dp))
 
-        //Hago
+        //Hago que los botones estén dentro de un elemento "Row", para que estén a la misma altura y con un espacio horizontal
+        Row(horizontalArrangement = Arrangement.spacedBy(15.dp)){
 
-        //Creo el boton que va a servir para disminuir el numero
-        Button(onClick = {numero--}){
-            //Le pongo texto al boton
-            Text(text = "-")
+            //Creo el boton que va a servir para disminuir el numero
+            Button(onClick = {numero--}){
+                //Le pongo texto al boton
+                Text(text = "-")
+            }
+
+            //Añado un espacio hasta el siguiente elemento
+            Spacer(modifier = Modifier.height(20.dp))
+
+            //Creo el boton que va a servir para aumentar el numero
+            Button(onClick = {numero++}){
+                //Le pongo texto al boton
+                Text(text = "+")
+            }
+
         }
 
         //Añado un espacio hasta el siguiente elemento
         Spacer(modifier = Modifier.height(20.dp))
 
-        //Creo el boton que va a servir para aumentar el numero
-        Button(onClick = {numero++}){
+        //Coloco el botón para resetear el contador
+        Button(onClick = {numero=0}){
             //Le pongo texto al boton
-            Text(text = "+")
+            Text(text = "Resetear")
         }
 
     }
